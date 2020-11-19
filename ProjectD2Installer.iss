@@ -143,6 +143,13 @@ begin
   WizardForm.WizardBitmapImage.Visible := false;
   WizardForm.SelectDirBrowseLabel.Visible := false;
 
+  WizardForm.InnerPage.Color := clWhite;
+  WizardForm.DirEdit.Color := clWhite;
+  WizardForm.DirEdit.Font.Color := clBlack;
+  WizardForm.SelectDirLabel.Font.Color := clBlack;
+  WizardForm.StatusLabel.Font.Color := clBlack;
+  WizardForm.FilenameLabel.Font.Color := clBlack;
+
   //ISTheme();
 end;
 
