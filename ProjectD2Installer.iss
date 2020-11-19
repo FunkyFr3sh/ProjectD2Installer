@@ -83,9 +83,10 @@ Root: HKCU; Subkey: Software\Blizzard Entertainment\Diablo II; ValueType: string
 
 [Code]
 function GetModuleHandleA(lpLibFileName: PAnsiChar): THandle;
-external 'GetModuleHandleA@kernel32.dll stdcall';
+  external 'GetModuleHandleA@kernel32.dll stdcall';
+
 function GetProcAddress(Module: THandle; ProcName: PAnsiChar): Longword;
-external 'GetProcAddress@kernel32.dll stdcall';
+  external 'GetProcAddress@kernel32.dll stdcall';
 
 function RunsOnWine(): boolean;
 begin
@@ -96,7 +97,10 @@ function DefaultDir(Param: String): String;
 var
   gamepath: String;
 begin
-  gamepath:=ExpandConstant('{reg:HKCU\{cm:GameRegEng},InstallPath|{pf}\Diablo II}');
+  gamepath:=RemoveBackslashUnlessRoot(ExpandConstant('{reg:HKCU\{cm:GameRegEng},InstallPath|{pf}\Diablo II}'));
+
+  if (not FileExists(gamepath+ExpandConstant('\{cm:CheckFile}'))) then
+    gamepath:=RemoveBackslashUnlessRoot(ExtractFilePath(gamepath));
   
   if (not FileExists(gamepath+ExpandConstant('\{cm:CheckFile}'))) then
     gamepath:=ExpandConstant('{pf}\Diablo II');
