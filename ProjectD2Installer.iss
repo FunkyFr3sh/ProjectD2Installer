@@ -1,12 +1,14 @@
 ;Made with Inno Setup 5.5.9 Ansi - https://files.jrsoftware.org/is/5/innosetup-5.5.9.exe
 ;#include <.\ISTheme\ISTheme.iss>
 
+#define ProjectDiablo2RegisterUrl = "https://www.projectdiablo2.com/Account/Register"
 
 [CustomMessages]
 GameNotFound=Game files not found in %1 %n%nPlease select a valid Diablo II: Lord of Destruction folder.%n%nNote: If you do not own the game yet, you can buy a copy here: https://shop.battle.net/ (Download the English version)
 InstallingApp=Installing %1, this may take several minutes...
 EnglishInstallRequired=Project Diablo 2 requires a -English- game installation of Diablo II: Lord of Destruction, please do not try to install it on any other game language or the game will crash randomly.
-SelectDiablo2Folder=Please select a valid (English) Diablo II: Lord of Destruction folder. 
+SelectDiablo2Folder=Please select a valid (English) Diablo II: Lord of Destruction folder.
+WantToRegisterAccount=You must create an in-game account on the Project Diablo 2 website to be able to play online games.%n%nWould you like to visit the website now?
 CheckFile=d2exp.mpq
 GameRegEng=SOFTWARE\Blizzard Entertainment\Diablo II
 
@@ -65,7 +67,7 @@ Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/install /passive /norestart";
 
 Filename: "{app}\ProjectD2\MpqFixer\FIX_MPQS_RUN_AS_ADMIN.bat"; WorkingDir: "{app}\ProjectD2\MpqFixer"; Flags: runascurrentuser; Check: ChangeStatusLabel('MPQFixer')
 
-Filename: "{app}\ProjectD2\PD2Launcher.exe"; WorkingDir: "{app}\ProjectD2"; Description: "{cm:LaunchProgram,Project Diablo 2}"; Flags: nowait postinstall runascurrentuser skipifsilent
+Filename: "{app}\ProjectD2\PD2Launcher.exe"; WorkingDir: "{app}\ProjectD2"; Description: "{cm:LaunchProgram,Project Diablo 2}"; Flags: nowait postinstall runascurrentuser skipifsilent; Check: not OpenRegisterAccountUrl
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}\ProjectD2"
@@ -122,6 +124,19 @@ begin
     else Result:=true;
   end
   else result:=true;
+end;
+
+function OpenRegisterAccountUrl(): Boolean;
+var
+  ErrorCode: Integer;
+begin
+  Result := false;
+
+  if MsgBox(ExpandConstant('{cm:WantToRegisterAccount}'), mbConfirmation, MB_YESNO) = IDYES then
+  begin
+    ShellExecAsOriginalUser('open', '{#ProjectDiablo2RegisterUrl}', '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
+    Result:=true;
+  end
 end;
 
 function ChangeStatusLabel(AppName: String): Boolean;
