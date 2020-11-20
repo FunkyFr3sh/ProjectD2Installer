@@ -82,6 +82,8 @@ Root: HKCU; Subkey: Software\Wine\AppDefaults\game.exe\DllOverrides; ValueType: 
 
 Root: HKCU; Subkey: Software\Blizzard Entertainment\Diablo II; ValueType: string; ValueName: "InstallPath"; ValueData: {app}
 
+[INI]
+Filename: "{app}\ProjectD2\UI.ini"; Section: "Settings"; Key: "Minimized"; String: "1"; Check: FileExists(ExpandConstant('{app}\ProjectD2\UI.ini'))
 
 [Code]
 function GetModuleHandleA(lpLibFileName: PAnsiChar): THandle;
