@@ -57,7 +57,8 @@ Source: Resources\VC_redist.x86.exe; Flags: dontcopy
 Source: Resources\VC_redist.x64.exe; Flags: dontcopy
 
 [Icons]
-Name: "{commondesktop}\Project Diablo 2"; Filename: "{app}\ProjectD2\PD2Launcher.exe"; WorkingDir: "{app}\ProjectD2"
+Name: "{commondesktop}\Project Diablo 2"; Filename: "{app}\ProjectD2\PD2Launcher.exe"; WorkingDir: "{app}\ProjectD2"; Check: not RunsOnWine
+Name: "{group}\Project Diablo 2"; Filename: "{app}\ProjectD2\PD2Launcher.exe"; WorkingDir: "{app}\ProjectD2"; Check: RunsOnWine
 Name: "{app}\ProjectD2\Uninstall Project Diablo 2"; Filename: "{uninstallexe}"; WorkingDir: "{app}\ProjectD2"
 
 [Run]
