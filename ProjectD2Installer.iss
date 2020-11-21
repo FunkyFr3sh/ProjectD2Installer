@@ -121,7 +121,7 @@ begin
   begin
     if (not FileExists(ExpandConstant('{app}\{cm:CheckFile}'))) then
     begin
-      MsgBox(FmtMessage(ExpandConstant('{cm:GameNotFound}'), [WizardForm.DirEdit.Text]), mbConfirmation, MB_OK);
+      MsgBox(FmtMessage(ExpandConstant('{cm:GameNotFound}'), [WizardForm.DirEdit.Text]), mbError, MB_OK);
       Result:=false;
     end
     else Result:=true;
@@ -186,5 +186,5 @@ begin
   Result := true;
   ExtractTemporaryFile('VC_redist.x86.exe');
   ExtractTemporaryFile('VC_redist.x64.exe');
-  MsgBox(ExpandConstant('{cm:EnglishInstallRequired}'), mbConfirmation, MB_OK);
+  MsgBox(ExpandConstant('{cm:EnglishInstallRequired}'), mbInformation, MB_OK);
 end;
