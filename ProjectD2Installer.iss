@@ -4,7 +4,7 @@
 #define ProjectDiablo2RegisterUrl = "https://www.projectdiablo2.com/Account/Register"
 
 [CustomMessages]
-GameNotFound=Game files not found in %1 %n%nPlease select a valid Diablo II: Lord of Destruction folder.%n%nNote: If you do not own the game yet, you can buy a copy here: https://shop.battle.net/ (Download the English version)
+GameNotFound=Game files not found in %1 %n%nPlease select a valid Diablo II: Lord of Destruction folder.%n%n%nNote: Project Diablo 2 is a mod for Diablo II: LoD, you must have Diablo II: LoD installed before you can install Project Diablo 2.%n%nIf you don't own Diablo II: LoD yet, you can buy a copy of the game here: https://shop.battle.net/ (Download the English version).
 InstallingApp=Installing %1, this may take several minutes...
 EnglishInstallRequired=Project Diablo 2 requires a -English- game installation of Diablo II: Lord of Destruction, please do not try to install it on any other game language or the game will crash randomly.
 SelectDiablo2Folder=Please select a valid (English) Diablo II: Lord of Destruction folder.
