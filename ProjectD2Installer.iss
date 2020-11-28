@@ -5,11 +5,13 @@
 
 [CustomMessages]
 GameNotFound=Game files not found in %1 %n%nPlease select a valid Diablo II: Lord of Destruction folder.%n%n%nNote: Project Diablo 2 is a mod for Diablo II: LoD, you must have Diablo II: LoD installed before you can install Project Diablo 2.%n%nIf you don't own Diablo II: LoD yet, you can buy a copy of the game here: https://shop.battle.net/ (Download the English version).
+LodNotFound=Diablo II was found in the selected folder but you are missing the Lord of Destruction expansion.%n%nPlease install the Lord of Destruction expansion and then retry.
 InstallingApp=Installing %1, this may take several minutes...
 EnglishInstallRequired=Project Diablo 2 requires a -English- game installation of Diablo II: Lord of Destruction, please do not try to install it on any other game language or the game will crash randomly.
 SelectDiablo2Folder=Please select a valid (English) Diablo II: Lord of Destruction folder.
 WantToRegisterAccount=You must create an in-game account on the Project Diablo 2 website to be able to play online games.%n%nWould you like to visit the website now?
 CheckFile=d2exp.mpq
+CheckFileClassic=d2data.mpq
 GameRegEng=SOFTWARE\Blizzard Entertainment\Diablo II
 
 [Setup]
@@ -121,7 +123,16 @@ begin
   begin
     if (not FileExists(ExpandConstant('{app}\{cm:CheckFile}'))) then
     begin
-      MsgBox(FmtMessage(ExpandConstant('{cm:GameNotFound}'), [WizardForm.DirEdit.Text]), mbError, MB_OK);
+
+      if (FileExists(ExpandConstant('{app}\{cm:CheckFileClassic}'))) then
+      begin
+        MsgBox(ExpandConstant('{cm:LodNotFound}'), mbError, MB_OK);
+      end
+      else
+      begin
+        MsgBox(FmtMessage(ExpandConstant('{cm:GameNotFound}'), [WizardForm.DirEdit.Text]), mbError, MB_OK);
+      end
+
       Result:=false;
     end
     else Result:=true;
