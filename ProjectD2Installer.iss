@@ -51,6 +51,15 @@ UninstallFilesDir={app}\ProjectD2
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
+[InstallDelete]
+Type: files; Name: "{app}\ProjectD2\UI.ini"
+Type: files; Name: "{app}\ProjectD2\ddraw.ini"
+Type: files; Name: "{app}\ProjectD2\D2HD.ini"
+Type: files; Name: "{app}\ProjectD2\ProjectDiablo.cfg"
+Type: files; Name: "{app}\ProjectD2\bncache.dat"
+Type: files; Name: "{app}\ProjectD2\BnetLog.txt"
+Type: files; Name: "{app}\ProjectD2\settings.db"
+
 [Files]
 Source: Files\*; DestDir: "{app}\ProjectD2"; Flags: ignoreversion
 Source: Files\MpqFixer\*; DestDir: "{app}\ProjectD2\MpqFixer"; Flags: ignoreversion
@@ -84,9 +93,6 @@ Root: HKLM64; Subkey: Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlag
 Root: HKCU; Subkey: Software\Wine\AppDefaults\game.exe\DllOverrides; ValueType: string; ValueName: "ddraw"; ValueData: "native, builtin"; Check: RunsOnWine
 
 Root: HKCU; Subkey: Software\Blizzard Entertainment\Diablo II; ValueType: string; ValueName: "InstallPath"; ValueData: {app}
-
-[INI]
-Filename: "{app}\ProjectD2\UI.ini"; Section: "Settings"; Key: "Minimized"; String: "1"; Check: FileExists(ExpandConstant('{app}\ProjectD2\UI.ini'))
 
 [Code]
 function GetModuleHandleA(lpLibFileName: PAnsiChar): THandle;
