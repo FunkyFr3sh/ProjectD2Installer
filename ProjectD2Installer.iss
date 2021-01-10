@@ -1,5 +1,5 @@
 ;Made with Inno Setup 5.5.9 Ansi - https://files.jrsoftware.org/is/5/innosetup-5.5.9.exe
-;#include <.\ISTheme\ISTheme.iss>
+#include <.\ISTheme\ISTheme.iss>
 
 #define ProjectDiablo2RegisterUrl = "https://www.projectdiablo2.com/register"
 
@@ -167,32 +167,14 @@ end;
 
 procedure InitializeWizard();
 begin
-  //### hide unwanted stuff ###
-  WizardForm.FinishedHeadingLabel.Visible := False;
-  WizardForm.Bevel1.Visible := false;
-  WizardForm.Bevel.Visible := false;
-  WizardForm.MainPanel.Visible := false;
-  WizardForm.SelectDirBitmapImage.Visible := False;
-  WizardForm.SelectGroupBitmapImage.Visible := False;
-  WizardForm.WizardSmallBitmapImage.Visible := false;
-  WizardForm.WizardBitmapImage.Visible := false;
-  WizardForm.SelectDirBrowseLabel.Visible := false;
-
-  WizardForm.InnerPage.Color := clWhite;
-  WizardForm.DirEdit.Color := clWhite;
-  WizardForm.DirEdit.Font.Color := clBlack;
-  WizardForm.SelectDirLabel.Font.Color := clBlack;
-  WizardForm.StatusLabel.Font.Color := clBlack;
-  WizardForm.FilenameLabel.Font.Color := clBlack;
-
-  //ISTheme();
+  WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:SelectDiablo2Folder}');
+  ISTheme();
 end;
 
 procedure CurPageChanged(CurPageID: Integer);
   begin
   if (CurPageID = wpSelectDir) then
   begin
-    WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:SelectDiablo2Folder}');
     WizardForm.NextButton.Caption := SetupMessage(msgButtonInstall);
     WizardForm.BackButton.Visible := false;
   end;
