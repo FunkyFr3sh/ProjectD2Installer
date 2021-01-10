@@ -167,6 +167,7 @@ end;
 
 procedure InitializeWizard();
 begin
+  WizardForm.SelectDirBrowseLabel.Visible := false;
   WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:SelectDiablo2Folder}');
   ISTheme();
 end;
