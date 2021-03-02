@@ -139,11 +139,11 @@ begin
         MsgBox(FmtMessage(ExpandConstant('{cm:GameNotFound}'), [WizardForm.DirEdit.Text]), mbError, MB_OK);
       end
 
-      Result:=false;
+      Result := false;
     end
-    else Result:=true;
+    else Result := true;
   end
-  else result:=true;
+  else Result := true;
 end;
 
 function OpenRegisterAccountUrl(): Boolean;
@@ -186,5 +186,4 @@ begin
   Result := true;
   ExtractTemporaryFile('VC_redist.x86.exe');
   ExtractTemporaryFile('VC_redist.x64.exe');
-  MsgBox(ExpandConstant('{cm:EnglishInstallRequired}'), mbInformation, MB_OK);
 end;
