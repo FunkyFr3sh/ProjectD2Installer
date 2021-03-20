@@ -7,8 +7,7 @@
 GameNotFound=Game files not found in %1 %n%nPlease select a valid Diablo II: Lord of Destruction folder.%n%n%nNote: Project Diablo 2 is a mod for Diablo II: LoD, you must have Diablo II: LoD installed before you can install Project Diablo 2.%n%nIf you don't own Diablo II: LoD yet, you can buy a copy of the game here: https://shop.battle.net/ (Download the English version).
 LodNotFound=Diablo II was found in the selected folder but you are missing the Lord of Destruction expansion.%n%nPlease install the Lord of Destruction expansion and then retry.
 InstallingApp=Installing %1, this may take several minutes...
-EnglishInstallRequired=Project Diablo 2 requires a -English- game installation of Diablo II: Lord of Destruction, please do not try to install it on any other game language or the game will crash randomly.
-SelectDiablo2Folder=Please select a valid (English) Diablo II: Lord of Destruction folder.
+SelectDiablo2Folder=Please select a valid Diablo II: Lord of Destruction folder.
 WantToRegisterAccount=You must create an in-game account on the Project Diablo 2 website to be able to play online games.%n%nWould you like to visit the website now?
 CheckFile=d2exp.mpq
 CheckFileClassic=d2data.mpq
@@ -62,10 +61,8 @@ Type: files; Name: "{app}\ProjectD2\settings.db"
 
 [Files]
 Source: Files\*; DestDir: "{app}\ProjectD2"; Flags: ignoreversion
-Source: Files\MpqFixer\*; DestDir: "{app}\ProjectD2\MpqFixer"; Flags: ignoreversion
 
 Source: Resources\VC_redist.x86.exe; Flags: dontcopy
-Source: Resources\VC_redist.x64.exe; Flags: dontcopy
 
 [Icons]
 Name: "{commondesktop}\Project Diablo 2"; Filename: "{app}\ProjectD2\PD2Launcher.exe"; WorkingDir: "{app}\ProjectD2"; Check: not RunsOnWine
@@ -74,10 +71,6 @@ Name: "{app}\ProjectD2\Uninstall Project Diablo 2"; Filename: "{uninstallexe}"; 
 
 [Run]
 Filename: "{tmp}\VC_redist.x86.exe"; Parameters: "/install /passive /norestart"; Flags: runascurrentuser; Check: FileExists(ExpandConstant('{tmp}\VC_redist.x86.exe')) and ChangeStatusLabel('Visual C++ Redistributable 2019 (x86)')
-
-Filename: "{tmp}\VC_redist.x64.exe"; Parameters: "/install /passive /norestart"; Flags: runascurrentuser; Check: FileExists(ExpandConstant('{tmp}\VC_redist.x64.exe')) and ChangeStatusLabel('Visual C++ Redistributable 2019 (x64)')
-
-Filename: "{app}\ProjectD2\MpqFixer\FIX_MPQS_RUN_AS_ADMIN.bat"; WorkingDir: "{app}\ProjectD2\MpqFixer"; Flags: runascurrentuser; Check: ChangeStatusLabel('MPQFixer')
 
 Filename: "{app}\ProjectD2\PD2Launcher.exe"; WorkingDir: "{app}\ProjectD2"; Description: "{cm:LaunchProgram,Project Diablo 2}"; Flags: nowait postinstall runascurrentuser skipifsilent; Check: not OpenRegisterAccountUrl
 
@@ -185,5 +178,4 @@ function InitializeSetup(): Boolean;
 begin
   Result := true;
   ExtractTemporaryFile('VC_redist.x86.exe');
-  ExtractTemporaryFile('VC_redist.x64.exe');
 end;
